@@ -94,7 +94,30 @@ const restartBtn = document.getElementById('restart-button');
 
 function loadQuiz() {
     const quiz = quizData[currentQuiz];
-    questionEl.textContent = quiz.question;
+    questionEl.innerHTML = '';
+    // 1번, 2번 문제에 그림 추가 (문제 순서 기준)
+    if (currentQuiz === 0) { // 1번 문제 (index 0)
+        const img = document.createElement('img');
+        img.src = 'images/01.png';
+        img.alt = '문제1 그림';
+        img.style.maxWidth = '100%';
+        img.style.display = 'block';
+        img.style.margin = '0 auto 16px auto';
+        questionEl.appendChild(img);
+    }
+    if (currentQuiz === 1) { // 2번 문제 (index 1)
+        const img = document.createElement('img');
+        img.src = 'images/02.png';
+        img.alt = '문제2 그림';
+        img.style.maxWidth = '100%';
+        img.style.display = 'block';
+        img.style.margin = '0 auto 16px auto';
+        questionEl.appendChild(img);
+    }
+    // 문제 텍스트
+    const qText = document.createElement('div');
+    qText.textContent = quiz.question;
+    questionEl.appendChild(qText);
     optionsEl.innerHTML = '';
     quiz.options.forEach((option, idx) => {
         const btn = document.createElement('button');
